@@ -3,13 +3,15 @@ const jwtwebToken = require("jsonwebtoken");
 const users = require("./mock.users");
 
 router.post("/login", (req, res) => {
-  const { document, password } = req.body;
+  const { username, password } = req.body;
 
-  if (!document || !password) {
-    document = document.replace(/\D/g, "");
+  if (!username || !password) {
     return res.status(400).json({ error: 400, message: "Informe o usuário e a senha" });
   }
-  const finded = users.find((item) => item.document === document && item.password === password);
+
+  const finded = users.find(
+    (item) => (item.username === username || item.email === username || item.document === username) && item.password === password
+  );
 
   if (finded) {
     const webToken = jwtwebToken.sign({ userId: finded.id, email: finded.email, name: finded.name }, "SuperS3c43tKey");
