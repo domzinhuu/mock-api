@@ -10,4 +10,8 @@ app.use(cors());
 
 app.use("/api", routes);
 
+app.get("/", (req, res) => {
+  return res.sendFile("./index.html", { root: __dirname });
+});
+
 module.exports = app;

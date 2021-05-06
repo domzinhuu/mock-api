@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/css/uikit.min.css" />
+
+    <title>Dom API</title>
+  </head>
+  <body>
+    <div class="uk-container">
+      <h1>Dom API</h1>
+
+      <p>
+        Nada de mais, apenas uma pequena API para testes com autenticação devolvendo um jwtWebToken, um endpoint que retorna uma lista de
+        transações e outro que retorna o saldo do usuário logado.
+      </p>
+      <p>Conforme for surgindo a necessidade eu vou adicionando outras chamadas uteis (até o Heroku resolver me cobrar ai eu paro.. :)</p>
+
+      <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m">
+        <h3 class="uk-card-title">Documentação</h3>
+        <p>URL BASE: <code>https://dom-api.herokuapp.com/api</code></p>
+        <ul uk-accordion>
+          <li class="uk-open">
+            <a class="uk-accordion-title" href="#">Autenticação</a>
+            <div class="uk-accordion-content">
+              <dl class="uk-description-list">
+                <dt><span class="uk-label uk-label-success">POST:</span> <code>/auth/login</code></dt>
+                <dd class="uk-margin-medium">
+                  <p
+                    class="codepen"
+                    data-height="265"
+                    data-theme-id="dark"
+                    data-default-tab="js"
+                    data-user="domzinhuu"
+                    data-slug-hash="QWpWMWx"
+                    style="
+                      height: 265px;
+                      box-sizing: border-box;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      border: 2px solid;
+                      margin: 1em 0;
+                      padding: 1em;
+                    "
+                    data-pen-title="QWpWMWx"
+                  >
+                    <span
+                      >See the Pen <a href="https://codepen.io/domzinhuu/pen/QWpWMWx"> QWpWMWx</a> by Maique Rosa (<a
+                        href="https://codepen.io/domzinhuu"
+                        >@domzinhuu</a
+                      >) on <a href="https://codepen.io">CodePen</a>.</span
+                    >
+                  </p>
+                  <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                </dd>
+              </dl>
+            </div>
+          </li>
+          <li>
+            <a class="uk-accordion-title" href="#">Transação</a>
+            <div class="uk-accordion-content">
+              <dl class="uk-description-list">
+                <dt><span class="uk-label uk-label-info">GET:</span> <code>/transactions/all</code></dt>
+                <dd class="uk-margin-medium">
+                  <p
+                    class="codepen"
+                    data-height="371"
+                    data-theme-id="dark"
+                    data-default-tab="js,result"
+                    data-user="domzinhuu"
+                    data-slug-hash="abJbydb"
+                    style="
+                      height: 371px;
+                      box-sizing: border-box;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      border: 2px solid;
+                      margin: 1em 0;
+                      padding: 1em;
+                    "
+                    data-pen-title="abJbydb"
+                  >
+                    <span
+                      >See the Pen <a href="https://codepen.io/domzinhuu/pen/abJbydb"> abJbydb</a> by Maique Rosa (<a
+                        href="https://codepen.io/domzinhuu"
+                        >@domzinhuu</a
+                      >) on <a href="https://codepen.io">CodePen</a>.</span
+                    >
+                  </p>
+                  <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                </dd>
+              </dl>
+            </div>
+          </li>
+          <li>
+            <a class="uk-accordion-title" href="#">Utils</a>
+            <div class="uk-accordion-content">
+              <dl class="uk-description-list">
+                <dt><span class="uk-label uk-label-info">GET:</span> <code>/utils/balance</code></dt>
+                <dd class="uk-margin-medium">
+                  <p
+                    class="codepen"
+                    data-height="265"
+                    data-theme-id="dark"
+                    data-default-tab="js,result"
+                    data-user="domzinhuu"
+                    data-slug-hash="zYZYdqO"
+                    style="
+                      height: 265px;
+                      box-sizing: border-box;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      border: 2px solid;
+                      margin: 1em 0;
+                      padding: 1em;
+                    "
+                    data-pen-title="utils"
+                  >
+                    <span
+                      >See the Pen <a href="https://codepen.io/domzinhuu/pen/zYZYdqO"> utils</a> by Maique Rosa (<a
+                        href="https://codepen.io/domzinhuu"
+                        >@domzinhuu</a
+                      >) on <a href="https://codepen.io">CodePen</a>.</span
+                    >
+                  </p>
+                  <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                </dd>
+              </dl>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
+  </body>
+</html>
