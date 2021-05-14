@@ -1,16 +1,12 @@
+const luxon = require("luxon");
+
 const transactions = [
   {
     transactionCode: "eee9a57cf7a8df56709bfa0f45808a27",
     userId: 3,
     transactionType: "receiver",
     description: "Maique Rosa",
-    transactionDate: new Date(
-      new Date().getFullYear(),
-      new Date().getMonth(),
-      new Date().getDate() - 1,
-      new Date().getHours,
-      new Date().getMinutes()
-    ),
+    transactionDate: luxon.DateTime.fromJSDate(new Date()).minus({ day: 1 }),
     value: 1170.86,
     moneyFlow: "CREDIT",
   },
@@ -37,13 +33,7 @@ const transactions = [
     userId: 4,
     transactionType: "transfer",
     description: "Wendell Maschette",
-    transactionDate: new Date(
-      new Date().getFullYear(),
-      new Date().getMonth(),
-      new Date().getDate() - 1,
-      new Date().getHours,
-      new Date().getMinutes()
-    ),
+    transactionDate: luxon.DateTime.fromJSDate(new Date()).minus({ day: 1 }),
     value: 1299.7,
     moneyFlow: "DEBIT",
   },
@@ -52,7 +42,7 @@ const transactions = [
     userId: 4,
     transactionType: "qrCode",
     description: "Pagamento de titulo",
-    transactionDate: new Date(Date.now).toISOString(),
+    transactionDate: new Date().toISOString(),
     value: 60.75,
     moneyFlow: "DEBIT",
   },
