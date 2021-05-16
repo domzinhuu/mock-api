@@ -2,7 +2,7 @@ const isAuthenticated = require("../middleware/is-authenticated");
 const users = require("./mock.users");
 const router = require("express").Router();
 
-router.get("/balance/", isAuthenticated, (req, res) => {
+router.get("/balance/", (req, res) => {
   const { userId } = req.decoded;
   const user = users.find((item) => item.id === userId);
   if (user) {
