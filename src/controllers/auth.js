@@ -16,7 +16,7 @@ router.post("/login", (req, res) => {
   if (finded) {
     const webToken = jwtwebToken.sign({ userId: finded.id, email: finded.email, name: finded.name }, "SuperS3c43tKey");
 
-    return res.json({ message: "Logado com sucesso", token: webToken });
+    return res.json({ message: "Logado com sucesso", token: webToken, refreshToken: webToken });
   }
 
   return res.status(401).json({ error: 401, message: "Usuário não cadastrado ou dados de login inválidos" });
