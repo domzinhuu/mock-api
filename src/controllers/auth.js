@@ -6,7 +6,7 @@ router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(400).json({ error: 400, message: "Informe o usuário e a senha" });
+    return res.status(400).json({ type: 'bad_request', message: "Informe o usuário e a senha" });
   }
 
   const finded = users.find(
@@ -19,7 +19,7 @@ router.post("/login", (req, res) => {
     return res.json({ message: "Logado com sucesso", token: webToken, refreshToken: webToken });
   }
 
-  return res.status(401).json({ error: 401, message: "Usuário não cadastrado ou dados de login inválidos" });
+  return res.status(403).json({ type: 'invalid_credentials', message: "Usuário não cadastrado ou dados de login inválidos" });
 });
 
 module.exports = router;
