@@ -4,7 +4,6 @@ const router = require("express").Router();
 
 router.get("/localization", async (req, res) => {
   const { latitude, longitude } = req.query;
-
   const url = process.env.API_URL_TECBAN + "/localizacao";
 
   // Add Your Key Here!!!
