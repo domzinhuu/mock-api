@@ -20,25 +20,29 @@ router.get("/localization", async (req, res) => {
 });
 
 router.get("/distance", async (req, res) => {
-  const { origin, destiny } = req.query;
+  const { origin, destiny, mode } = req.query;
 
   try {
     const url = "https://maps.googleapis.com/maps/api/distancematrix/json";
     const params = {
       units: "metrics",
+      mode: mode,
       origins: origin,
       destinations: destiny,
       key: process.env.GOOGLE_API_KEY,
     };
     const response = await axios.get(url, { params });
+
+    console.log(response.data);
     const data = {
-      destination: response.data.destination_addresses,
-      origin: response.data.origin_addresses,
+      destination: response.data.destination_addresses[0],
+      origin: response.data.origin_addresses[0],
       distance: {
-        value: response.data.rows[0].element[0].distance.text,
-        duration: response.data.rows[0].element[0].duration.text,
+        value: response.data.rows[0].elements[0].distance.text,
+        duration: response.data.rows[0].elements[0].duration.text,
       },
     };
+
     return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json(error.response);
