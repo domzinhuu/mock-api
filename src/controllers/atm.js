@@ -33,7 +33,6 @@ router.get("/distance", async (req, res) => {
     };
     const response = await axios.get(url, { params });
 
-    console.log(response.data);
     const data = {
       destination: response.data.destination_addresses[0],
       origin: response.data.origin_addresses[0],
