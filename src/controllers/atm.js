@@ -31,7 +31,15 @@ router.get("/distance", async (req, res) => {
       key: process.env.GOOGLE_API_KEY,
     };
     const response = await axios.get(url, { params });
-    return res.status(200).json(response.data);
+    const data = {
+      destination: response.data.destination_addresses,
+      origin: response.data.origin_addresses,
+      distance: {
+        value: response.data.rows[0].element[0].distance.text,
+        duration: response.data.rows[0].element[0].duration.text,
+      },
+    };
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json(error.response);
   }
