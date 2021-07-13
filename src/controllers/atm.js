@@ -46,8 +46,26 @@ router.get("/distance", async (req, res) => {
   } catch (error) {
     return res.status(500).json(error.response);
   }
+});
 
-  return res.json({ startPoint, endPoint });
+router.get("/distance/raw", async (req, res) => {
+  const { origin, destiny, mode } = req.query;
+
+  try {
+    const url = "https://maps.googleapis.com/maps/api/distancematrix/json";
+    const params = {
+      units: "metrics",
+      mode: mode,
+      origins: origin,
+      destinations: destiny,
+      key: process.env.GOOGLE_API_KEY,
+    };
+    const response = await axios.get(url, { params });
+
+    return res.status(200).json(response.data);
+  } catch (error) {
+    return res.status(500).json(error.response);
+  }
 });
 
 module.exports = router;
