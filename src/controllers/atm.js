@@ -12,7 +12,7 @@ router.get("/localization", async (req, res) => {
   };
 
   try {
-    const response = await axios.get(`${url}?longitude=${longitude}&latitude=${latitude}&limite=50&lista=1&acessivel=0&raio=20&disp=0`);
+    const response = await axios.get(`${url}?longitude=${longitude}&latitude=${latitude}&limite=50&lista=1&acessivel=0&raio=50&disp=0`);
     return res.status(200).json(response.data.Results);
   } catch (error) {
     return res.status(error.response.status).json({ error: error });
