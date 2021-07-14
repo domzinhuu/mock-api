@@ -27,6 +27,7 @@ router.get("/distance", async (req, res) => {
     const params = {
       units: "metrics",
       mode: mode,
+      language: "pt_BR",
       origins: origin,
       destinations: destiny,
       key: process.env.GOOGLE_API_KEY,
@@ -56,6 +57,7 @@ router.get("/distance/raw", async (req, res) => {
     const params = {
       units: "metrics",
       mode: mode,
+      language: "pt_BR",
       origins: origin,
       destinations: destiny,
       key: process.env.GOOGLE_API_KEY,
@@ -66,6 +68,34 @@ router.get("/distance/raw", async (req, res) => {
   } catch (error) {
     return res.status(500).json(error.response);
   }
+});
+
+router.get("/places", async (req, res) => {
+  const { input } = req.query;
+
+  if (input && input.length >= 5) {
+    try {
+      const params = {
+        language: "pt_BR",
+        input: input,
+        offset: 5,
+        key: process.env.GOOGLE_API_KEY,
+      };
+      const response = await axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?`, { params });
+      const data = response.data;
+
+      if (data.status === "OK") {
+        const options = data.predictions.map((predic) => ({ description: predic.description, placeId: predic.place_id }));
+        return res.status(200).json({ options, status: "OK" });
+      }
+
+      return res.status(200).json({ options: [], status: "EMPTY" });
+    } catch (error) {
+      return res.status(error.response.status).json(error.response);
+    }
+  }
+
+  return res.status(200).json({ options: [], status: "EMPTY" });
 });
 
 module.exports = router;
