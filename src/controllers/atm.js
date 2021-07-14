@@ -40,7 +40,7 @@ router.get("/localization/by-place-id", async (req, res) => {
 
     const response = await axios.get(`${url}?longitude=${lng}&latitude=${lat}&limite=50&lista=1&acessivel=0&raio=50&disp=1`);
 
-    return res.status(200).json(response.data.Results);
+    return res.status(200).json({ location: { lat, lng, viewport: data.results[0].geometry.viewport }, atms: response.data.Results });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: error });
