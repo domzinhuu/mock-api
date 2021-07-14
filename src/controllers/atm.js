@@ -19,6 +19,34 @@ router.get("/localization", async (req, res) => {
   }
 });
 
+router.get("/localization/by-place-id", async (req, res) => {
+  try {
+    const { placeId } = req.query;
+    const params = {
+      place_id: placeId,
+      key: process.env.GOOGLE_API_KEY,
+    };
+    const result = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, { params });
+
+    const data = result.data;
+
+    const { lat, lng } = data.results[0].geometry.location;
+    const url = process.env.API_URL_TECBAN + "/localizacao";
+
+    // Add Your Key Here!!!
+    axios.defaults.headers.common = {
+      "X-API-Key": process.env.X_API_KEY,
+    };
+
+    const response = await axios.get(`${url}?longitude=${lng}&latitude=${lat}&limite=50&lista=1&acessivel=0&raio=50&disp=1`);
+
+    return res.status(200).json(response.data.Results);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error });
+  }
+});
+
 router.get("/distance", async (req, res) => {
   const { origin, destiny, mode } = req.query;
 
@@ -86,7 +114,7 @@ router.get("/places", async (req, res) => {
 
       if (data.status === "OK") {
         const options = data.predictions.map((predic) => ({ description: predic.description, placeId: predic.place_id }));
-        return res.status(200).json({ options, status: "OK" });
+        return res.status(200).json({ options, status: "OK", raw: data });
       }
 
       return res.status(200).json({ options: [], status: "EMPTY" });
